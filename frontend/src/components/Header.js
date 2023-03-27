@@ -3,12 +3,13 @@ import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { logout } from "../actions/userAction";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import SearchBox from "./SearchBox";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const logoutHandler = () => {
@@ -31,8 +32,10 @@ const Header = () => {
               </Nav.Link>
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
-                  <NavDropdown.Item onClick={() => history.push("/profile")}>
-                    Profile
+                  <NavDropdown.Item>
+                    <LinkContainer to="/profile">
+                      <span>Profile</span>
+                    </LinkContainer>
                   </NavDropdown.Item>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
@@ -45,20 +48,23 @@ const Header = () => {
               )}
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title="Admin">
-                  <NavDropdown.Item
-                    onClick={() => history.push("/admin/userlist")}
-                  >
-                    Users
+                  <NavDropdown.Item>
+                    <LinkContainer to="/admin/userlist">
+                      <span>Users</span>
+                    </LinkContainer>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>
+                    <LinkContainer to="/admin/productlist">
+                      <span>Products</span>
+                    </LinkContainer>
                   </NavDropdown.Item>
                   <NavDropdown.Item
-                    onClick={() => history.push("/admin/productlist")}
+
+                  // onClick={() => history.push("/admin/orderlist")}
                   >
-                    Products
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    onClick={() => history.push("/admin/orderlist")}
-                  >
-                    Orders
+                    <LinkContainer to="/admin/orderlist">
+                      <span>Orders</span>
+                    </LinkContainer>
                   </NavDropdown.Item>
                 </NavDropdown>
               )}

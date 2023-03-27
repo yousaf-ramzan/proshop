@@ -15,7 +15,7 @@ const HomeScreen = ({ match }) => {
   const pageNumber = match.params.pageNumber || 1;
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, pages, page } = productList;
+  const { loading, error, products, page, pages } = productList;
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
@@ -46,7 +46,6 @@ const HomeScreen = ({ match }) => {
                 </Col>
               ))}
             </Row>
-
             <Paginate
               pages={pages}
               page={page}
