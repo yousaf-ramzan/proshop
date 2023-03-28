@@ -52,6 +52,7 @@ const ProductEditScreen = ({ match, history }) => {
   }, [dispatch, productId, history, product, successUpdate]);
 
   const uploadFileHandler = async (e) => {
+    console.log("upload file handler is ok");
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("image", file);
@@ -129,6 +130,12 @@ const ProductEditScreen = ({ match, history }) => {
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
+              <input
+                type="file"
+                id="image-file"
+                custom="true"
+                onChange={uploadFileHandler}
+              />
               {/* <Form.File
                 id="image-file"
                 label="Choose File"
