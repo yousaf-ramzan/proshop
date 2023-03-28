@@ -49,9 +49,10 @@ const OrderScreen = ({ match, history }) => {
     }
     const addPaypalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
+
       const script = document.createElement("script");
       script.type = "text/javascript";
-      script.src = `https://www.paypal.com/sdk/js?client_id=${clientId}`;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
       script.async = true;
       script.onload = () => {
         setSdkReady(true);
@@ -198,7 +199,6 @@ const OrderScreen = ({ match, history }) => {
                       {!sdkReady ? (
                         <Loader />
                       ) : (
-                        // <Button>paypal</Button>
                         <PayPalButton
                           amount={order.totalPrice}
                           onSuccess={successPaymentHandler}
