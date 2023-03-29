@@ -65,12 +65,26 @@ const ProductEditScreen = ({ match, history }) => {
         },
       };
       const { data } = await axios.post("/api/upload", formData, config);
-
+      console.log(data);
       setImage(data);
       setUploading(false);
     } catch (error) {
       console.error(error);
       setUploading(false);
+    }
+  };
+  const handleFileUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+    try {
+      const response = await axios.post("/api/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -130,11 +144,15 @@ const ProductEditScreen = ({ match, history }) => {
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
-              <input
+              {/* <input
                 type="file"
                 id="image-file"
                 custom="true"
                 onChange={uploadFileHandler}
+              /> */}
+              <input
+                type="file"
+                onChange={(event) => handleFileUpload(event.target.files[0])}
               />
               {/* <Form.File
                 id="image-file"
