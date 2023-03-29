@@ -51,28 +51,28 @@ const ProductEditScreen = ({ match, history }) => {
     }
   }, [dispatch, productId, history, product, successUpdate]);
 
-  const uploadFileHandler = async (e) => {
-    console.log("upload file handler is ok");
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-    setUploading(true);
+  // const uploadFileHandler = async (e) => {
+  //   console.log("upload file handler is ok");
+  //   const file = e.target.files[0];
+  //   const formData = new FormData();
+  //   formData.append("image", file);
+  //   setUploading(true);
 
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      const { data } = await axios.post("/api/upload", formData, config);
-      console.log(data);
-      setImage(data);
-      setUploading(false);
-    } catch (error) {
-      console.error(error);
-      setUploading(false);
-    }
-  };
+  //   try {
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     };
+  //     const { data } = await axios.post("/api/upload", formData, config);
+  //     console.log(data);
+  //     setImage(data);
+  //     setUploading(false);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setUploading(false);
+  //   }
+  // };
   const handleFileUpload = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
