@@ -10,7 +10,8 @@
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeders",
-    "data:destroy": "node backend/seeders -d"
+    "data:destroy": "node backend/seeders -d",
+    "build": "npm i"
   },
   "author": "Yousaf Ramzan",
   "license": "ISC",
