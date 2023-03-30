@@ -6,7 +6,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleWare.js";
 import orderRoutes from "./routes/orderRoutes.js";
-// import uploadsRoutes from "./routes/uploadsRoutes";
+import uploadsRoutes from "./routes/uploadsRoutes.js";
 
 import colors from "colors";
 import morgan from "morgan";
@@ -25,7 +25,7 @@ app.use(express.json());
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
-// app.use("/api/upload", uploadsRoutes);
+app.use("/api/uploads", uploadsRoutes);
 
 app.use("/api/config/paypal", (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
